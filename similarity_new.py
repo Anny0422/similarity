@@ -135,6 +135,7 @@ if __name__ == '__main__':
     craw_file = CS.get_craw()  # 获取待匹配数据
     if craw_file:
         saved_files = CS.conn_db(craw_file)
+        print(len(saved_files))
         corpus, main_id, counts = CS.get_idcorpus(saved_files)
         dictionary, tfidf_vectors = CS.gen_Model(corpus)
         result = CS.get_similar(craw_file, dictionary, tfidf_vectors)
