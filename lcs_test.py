@@ -3,10 +3,7 @@
 def lcs(a, b):
     lena = len(a)
     lenb = len(b)
-    if lena > lenb:
-        small_length = lenb
-    else:
-        small_length = lena
+    small_length = min(lena, lenb)
     print('最小字符串长度为：' ,small_length)
 
     c = [[0 for i in range(lenb + 1)] for j in range(lena + 1)]
@@ -38,8 +35,8 @@ def printLcs(flag, a, i, j):
     else:
         printLcs(flag, a, i - 1, j)
 
-a = '''中国央行：截至3月末，全国共有小额贷款公司8471家；贷款余额9630亿元，一季度减少111亿元。'''
-b = '''央行：小额贷款公司的贷款余额一季度减少111亿元人民币。'''
+a = '''$中牧股份(SH600195)$ 年报：实现营收40.7亿元，同比增长2.41%；净利近4亿元，同比增长19.57%；拟10转4派3.26元。'''
+b = '''$合盛硅业(SH603260)$ 年报：实现营收69.5亿元，同比增长51.9%；净利15.17亿元，同比增长132.81%；拟10派4.41元。'''
 c, flag, small_length = lcs(a, b)
 
 counter = 0

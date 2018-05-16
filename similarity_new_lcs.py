@@ -113,7 +113,7 @@ class CacuSimil(object):
     #         lcs_score_list.append(score)
     #     return lcs_score_list, max(lcs_score_list)
 
-    def insert_or_counts(self, result, craw_file, contents, main_id, counts): # main_id, counts
+    def insert_or_counts(self, result, craw_file, contents, main_id, counts):
          db = Database()
          lcs = LCS()
          db.connect('crawl_data')
@@ -130,12 +130,8 @@ class CacuSimil(object):
              lcs_score = lcs.LCS_score(content_i, craw_content)
              lcs_score_list.append(lcs_score)       #获得lcs方法得到的与每个新闻的相似度
 
-         #     if lcs_score >0.85:
-         #         print('lcs相似度大于0.85的数据id：', main_id[i], lcs_score)
-         # return
-
             #重复，计数
-             if result[i][1]> 0.9 or lcs_score > 0.86:
+             if result[i][1]> 0.88 or lcs_score > 0.855:
                  id = main_id[i] #数据库中的main_id，用来之后更新数据库
                  num = counts[i] +1 #更新计数
                  sql_update = "update finance_news set counts='%s' where main_id='%s'"%(num,id)
@@ -143,7 +139,7 @@ class CacuSimil(object):
                  print('与之重复的数据id为', id, 'tfidf分值为', result[i][1], 'lcs分值为', lcs_score)
 
          # 认为不重复，加入到数据库中
-         if max(tfidf_score_list) <0.9 and max(lcs_score_list) < 0.86:
+         if max(tfidf_score_list) <0.88 and max(lcs_score_list) < 0.855:
              max_tfidf_index = np.argmax(tfidf_score_list)
              max_lcs_index = np.argmax(lcs_score_list)
              print('与tfidf分数最接近的数据id为', main_id[max_tfidf_index], 'tfidf分值为：', max(tfidf_score_list))

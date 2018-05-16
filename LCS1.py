@@ -5,10 +5,7 @@ class LCS:
     def lcs(self, a, b):
         lena = len(a)
         lenb = len(b)
-        if lena > lenb:
-            small_length = lenb
-        else:
-            small_length = lena
+        small_length = min(lena, lenb)
         #print('最小字符串长度为：' ,small_length)
 
         c = [[0 for i in range(lenb + 1)] for j in range(lena + 1)]
@@ -45,9 +42,9 @@ class LCS:
     #b = '''【证监会住建部联合发文，推进住房租赁资产证券化相关工作】证监会、住建部联合发布《关于推进住房租赁资产证券化相关工作的通知》，明确优先支持大中城市、雄安新区等国家政策重点支持区域和利用集体建设用地建设租赁住房试点城市的住房租赁项目开展资产证券化。'''
         c, flag, small_length = self.lcs(a, b)
 
-
         xxx = self.printLcs(flag, a, len(a), len(b))
         #print('最大公共子序列的长度为：', self.counter)
+
         similarities = self.counter / small_length
         return similarities
 
